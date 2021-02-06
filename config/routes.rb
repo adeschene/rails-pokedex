@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  root "pokedex#index"
+  root "pokemon#index"
+
+  resources :pokemon
 end

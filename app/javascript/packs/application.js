@@ -12,4 +12,4 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-require("packs/pokedex")
+require("packs/pokemon")

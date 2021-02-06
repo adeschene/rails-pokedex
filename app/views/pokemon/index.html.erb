@@ -1,0 +1,11 @@
+
+<%= link_to "< Prev", pokemon_index_path(:offset => @poke_list[:prev][:offset], :limit => @poke_list[:prev][:limit]) %>
+
+<%= link_to "Next >", pokemon_index_path(:offset => @poke_list[:next][:offset], :limit => @poke_list[:next][:limit]) %>
+
+<div class="list-group">
+  <% @poke_list[:list].each do |pokemon| %>
+    <% puts pokemon %>
+    <%= link_to pokemon[:name], pokemon_path(:id => pokemon[:id]), class: "list-group-item list-group-item-active" %>
+  <% end %>
+</div>

@@ -1,7 +1,0 @@
-<% $poke_list = @pokeservice.get_pokemon_list %>
-
-<div class="next-btn btn btn-dark">Next</div>
-
-<% $poke_list[:results].each do |pokemon| %>
-  <p><%= pokemon[:name] %></p>
-<% end %>

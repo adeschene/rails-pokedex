@@ -20,13 +20,6 @@
   <body>
     <!-- Put body in a bootstrap container -->
     <div class="container">
-      <!-- If any notices or alerts are sent, render them with corresponding partial -->
-      <% if notice %>
-        <%= render 'layouts/notices' %>
-      <% end %>
-      <% if alert %>
-        <%= render 'layouts/alerts' %>
-      <% end %>
       <%= yield %>
     </div>
 
