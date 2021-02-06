@@ -9,6 +9,7 @@ gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
+gem 'httparty', '~> 0.18.1'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 
