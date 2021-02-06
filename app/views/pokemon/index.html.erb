@@ -1,11 +1,18 @@
+<div class="card pokedex-outer bg-danger mt-2 px-3 py-3">
+  <div class="card pokedex-middle bg-dark w-100 px-2 py-2">
+    <div class="card pokedex-inner">
+      <div class="list-group">
+        <% @poke_list[:list].each do |pokemon| %>
+          <%= link_to pokemon[:name], pokemon_path(:id => pokemon[:id]), class: "list-group-item list-group-item-active list-group-item-secondary text-center w-50" %>
+        <% end %>
+      </div>
+      <div class="btn-group px-1 py-1">
 
-<%= link_to "< Prev", pokemon_index_path(:offset => @poke_list[:prev][:offset], :limit => @poke_list[:prev][:limit]) %>
+        <%= link_to "< Prev", pokemon_index_path(:offset => @poke_list[:prev][:offset], :limit => @poke_list[:prev][:limit]), class: "btn btn-primary border-dark" + (@poke_list[:prev][:offset].empty? ? ' disabled' : '') %>
 
-<%= link_to "Next >", pokemon_index_path(:offset => @poke_list[:next][:offset], :limit => @poke_list[:next][:limit]) %>
+        <%= link_to "Next >", pokemon_index_path(:offset => @poke_list[:next][:offset], :limit => @poke_list[:next][:limit]), class: "btn btn-primary border-dark" %>
 
-<div class="list-group">
-  <% @poke_list[:list].each do |pokemon| %>
-    <% puts pokemon %>
-    <%= link_to pokemon[:name], pokemon_path(:id => pokemon[:id]), class: "list-group-item list-group-item-active" %>
-  <% end %>
+      </div>
+    </div>
+  </div>
 </div>
