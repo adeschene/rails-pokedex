@@ -6,6 +6,8 @@ class PokeService
   # Get list of pokemon using offset and limit, extract and return useful info in a hash
   def get_pokemon_list(offset, limit)
     response   = HTTParty.get(BASE_URI + "?offset=" + offset.to_s + "&limit=" + limit.to_s).to_s
+    
+    # symbolize_names allows accessing with :weight instead of "weight"
     parsed     = JSON.parse(response, {symbolize_names: true})
     
     # Get offset and limit values from 'next' and 'previous' urls
@@ -42,8 +44,10 @@ class PokeService
     pokeheight  = format_info(parsed[:height], "height")
     pokeweight  = format_info(parsed[:weight], "weight")
 
-    # TODO: Add abilities parsed[:abilities].each[:ability][:name] and gsub '-',' ' and capitalize, then list in view
-    # Maybe same for held items?
+    # The extra arguments are here because the pokemon hash has
+    # the structure {abilities => {ability => {name: "x" }}}, and we want the names
+    pokeabils   = format_info_list(parsed[:abilities], :ability, :name)
+    pokeitems   = format_info_list(parsed[:held_items], :item, :name)
 
     # Return a new hash with only the relevent info for the pokemon
     return {
@@ -52,7 +56,9 @@ class PokeService
       :sprite => pokesprite,
       :types  => poketypes,
       :height => pokeheight,
-      :weight => pokeweight
+      :weight => pokeweight,
+      :abils  => pokeabils,
+      :items  => pokeitems
     }
   end
 
@@ -94,5 +100,16 @@ class PokeService
       end
 
       return formatted
+    end
+
+    # Take list from response hash and turn into string
+    def format_info_list(raw, sym1, sym2)
+      # For each value in list, extract the name, replace hyphens with spaces, and capitalize
+      formatted = raw.map { |v| v[sym1][sym2].sub('-', ' ').capitalize }
+      
+      # If the extracted array of values is empty, return 'None', else join values into comma seperated string
+      str_from_arr = formatted.empty? ? "None" : formatted.join(', ')
+    
+      return str_from_arr
     end
 end

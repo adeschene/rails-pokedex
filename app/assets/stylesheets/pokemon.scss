@@ -1,6 +1,7 @@
-$default-screen-bg: #21d945;
-$poke-list-bg:      #21d945;
+$poke-list-bg:      #42f569;
 $poke-list-hover:   lighten($poke-list-bg, 10);
+
+$default-screen-bg: $poke-list-bg;
 
 $normal-type-bg:    #A8A878;
 $fire-type-bg:      #F08030;

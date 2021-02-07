@@ -1,3 +1,4 @@
+<%# Add dynamic class to div based on first type name which colors background %>
 <div class="pokedex-inner <%= @pokemon[:types][0].downcase %>">
   <div class="pokedex-entry-screen">
 
@@ -42,7 +43,23 @@
           Weight
         </div>
         <div class="poke-info-desc">
-          <%= @pokemon[:weight] %>
+        <%= @pokemon[:weight] %>
+        </div>
+      </div>
+      <div class="poke-info-item">
+        <div class="poke-info-title">
+          Abilities
+        </div>
+        <div class="poke-info-desc">
+          <%= @pokemon[:abils] %>
+        </div>
+      </div>
+      <div class="poke-info-item">
+        <div class="poke-info-title">
+          Held Items
+        </div>
+        <div class="poke-info-desc">
+          <%= @pokemon[:items] %>
         </div>
       </div>
     </div>
