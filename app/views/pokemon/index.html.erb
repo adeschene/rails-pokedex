@@ -1,18 +1,17 @@
-<div class="card pokedex-outer bg-danger mt-2 px-3 py-3">
-  <div class="card pokedex-middle bg-dark w-100 px-2 py-2">
-    <div class="card pokedex-inner">
-      <div class="list-group">
-        <% @poke_list[:list].each do |pokemon| %>
-          <%= link_to pokemon[:name], pokemon_path(:id => pokemon[:id]), class: "list-group-item list-group-item-active list-group-item-secondary text-center w-50" %>
-        <% end %>
-      </div>
-      <div class="btn-group px-1 py-1">
+<div class="pokedex-inner">
+  <div class="pokedex-screen list-group row row-cols-2">
+    <% @poke_list[:list].each do |pokemon| %>
+      <%= link_to (pokemon[:id] + ": " + pokemon[:name]), pokemon_path(:id => pokemon[:id]), class: "poke-list-item col list-group-item" %>
+    <% end %>
+  </div>
 
-        <%= link_to "< Prev", pokemon_index_path(:offset => @poke_list[:prev][:offset], :limit => @poke_list[:prev][:limit]), class: "btn btn-primary border-dark" + (@poke_list[:prev][:offset].empty? ? ' disabled' : '') %>
+  <div class="pokedex-list-buttons btn-group">
+    <%= link_to pokemon_index_path(:offset => @poke_list[:prev][:offset], :limit => @poke_list[:prev][:limit]), class: "btn btn-secondary border-dark #{ @poke_list[:prev][:offset].empty? ? ' disabled' : '' }" do %>
+      <i class="bi bi-caret-left"></i>
+    <% end %>
 
-        <%= link_to "Next >", pokemon_index_path(:offset => @poke_list[:next][:offset], :limit => @poke_list[:next][:limit]), class: "btn btn-primary border-dark" %>
-
-      </div>
-    </div>
+    <%= link_to pokemon_index_path(:offset => @poke_list[:next][:offset], :limit => @poke_list[:next][:limit]), class: "btn btn-secondary border-dark" do %>
+      <i class="bi bi-caret-right"></i>
+    <% end %>
   </div>
 </div>
